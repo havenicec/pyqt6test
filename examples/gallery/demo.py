@@ -2,9 +2,9 @@
 import os
 import sys
 
-from PyQt5.QtCore import Qt, QTranslator
-from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QApplication
+from PyQt6.QtCore import Qt, QTranslator
+from PyQt6.QtGui import QFont
+from PyQt6.QtWidgets import QApplication
 from qfluentwidgets import FluentTranslator
 
 from app.common.config import cfg
@@ -39,4 +39,10 @@ app.installTranslator(galleryTranslator)
 w = MainWindow()
 w.show()
 
-app.exec_()
+try:
+    sys.exit(app.exec())
+except SystemExit:
+    print('应用程序正常退出')
+except Exception as e:
+    print(f'发生错误: {str(e)}')
+    sys.exit(1)
